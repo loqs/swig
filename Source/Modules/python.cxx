@@ -3328,7 +3328,7 @@ public:
     }
 
     /* for builtin types, store the docstring (if it exists) in the PyGetSetDef entry. */
-    if (builtin && have_docstring(n)) {
+    if ((builtin_getter || builtin_setter) && have_docstring(n)) {
       String *memname = Getattr(n, "membervariableHandler:sym:name");
       if (!memname)
 	memname = iname;
