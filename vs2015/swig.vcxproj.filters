@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\Source\CParse\cparse.h" />
+    <ClInclude Include="..\Source\CParse\parser.h" />
+    <ClInclude Include="..\Source\DOH\doh.h" />
+    <ClInclude Include="..\Source\DOH\dohint.h" />
+    <ClInclude Include="..\Source\Include\swigwarn.h" />
+    <ClInclude Include="..\Source\Modules\swigmod.h" />
+    <ClInclude Include="..\Source\Preprocessor\preprocessor.h" />
+    <ClInclude Include="..\Source\Swig\swig.h" />
+    <ClInclude Include="..\Source\Swig\swigfile.h" />
+    <ClInclude Include="..\Source\Swig\swigopt.h" />
+    <ClInclude Include="..\Source\Swig\swigparm.h" />
+    <ClInclude Include="..\Source\Swig\swigscan.h" />
+    <ClInclude Include="..\Source\Swig\swigtree.h" />
+    <ClInclude Include="..\Source\Swig\swigwrap.h" />
+    <ClInclude Include="swigconfig.h" />
+    <ClInclude Include="pcre\pcre.h">
+      <Filter>pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\pcre_internal.h">
+      <Filter>pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\ucp.h">
+      <Filter>pcre</Filter>
+    </ClInclude>
+    <ClInclude Include="pcre\config.h">
+      <Filter>pcre</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Source\CParse\cscanner.c" />
+    <ClCompile Include="..\Source\CParse\parser.c" />
+    <ClCompile Include="..\Source\CParse\templ.c" />
+    <ClCompile Include="..\Source\CParse\util.c" />
+    <ClCompile Include="..\Source\DOH\base.c" />
+    <ClCompile Include="..\Source\DOH\file.c" />
+    <ClCompile Include="..\Source\DOH\fio.c" />
+    <ClCompile Include="..\Source\DOH\hash.c" />
+    <ClCompile Include="..\Source\DOH\list.c" />
+    <ClCompile Include="..\Source\DOH\memory.c" />
+    <ClCompile Include="..\Source\DOH\string.c" />
+    <ClCompile Include="..\Source\DOH\void.c" />
+    <ClCompile Include="..\Source\Modules\allocate.cxx" />
+    <ClCompile Include="..\Source\Modules\browser.cxx" />
+    <ClCompile Include="..\Source\Modules\contract.cxx" />
+    <ClCompile Include="..\Source\Modules\directors.cxx" />
+    <ClCompile Include="..\Source\Modules\emit.cxx" />
+    <ClCompile Include="..\Source\Modules\interface.cxx" />
+    <ClCompile Include="..\Source\Modules\lang.cxx" />
+    <ClCompile Include="..\Source\Modules\main.cxx" />
+    <ClCompile Include="..\Source\Modules\module.cxx" />
+    <ClCompile Include="..\Source\Modules\nested.cxx" />
+    <ClCompile Include="..\Source\Modules\overload.cxx" />
+    <ClCompile Include="..\Source\Modules\python.cxx" />
+    <ClCompile Include="..\Source\Modules\swigmain.cxx" />
+    <ClCompile Include="..\Source\Modules\typepass.cxx" />
+    <ClCompile Include="..\Source\Modules\utils.cxx" />
+    <ClCompile Include="..\Source\Preprocessor\cpp.c" />
+    <ClCompile Include="..\Source\Preprocessor\expr.c" />
+    <ClCompile Include="..\Source\Swig\cwrap.c" />
+    <ClCompile Include="..\Source\Swig\deprecate.c" />
+    <ClCompile Include="..\Source\Swig\error.c" />
+    <ClCompile Include="..\Source\Swig\extend.c" />
+    <ClCompile Include="..\Source\Swig\fragment.c" />
+    <ClCompile Include="..\Source\Swig\getopt.c" />
+    <ClCompile Include="..\Source\Swig\include.c" />
+    <ClCompile Include="..\Source\Swig\misc.c" />
+    <ClCompile Include="..\Source\Swig\naming.c" />
+    <ClCompile Include="..\Source\Swig\parms.c" />
+    <ClCompile Include="..\Source\Swig\scanner.c" />
+    <ClCompile Include="..\Source\Swig\stype.c" />
+    <ClCompile Include="..\Source\Swig\symbol.c" />
+    <ClCompile Include="..\Source\Swig\tree.c" />
+    <ClCompile Include="..\Source\Swig\typemap.c" />
+    <ClCompile Include="..\Source\Swig\typeobj.c" />
+    <ClCompile Include="..\Source\Swig\typesys.c" />
+    <ClCompile Include="..\Source\Swig\wrapfunc.c" />
+    <ClCompile Include="..\Source\Modules\xml.cxx" />
+    <ClCompile Include="pcre\pcre_byte_order.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_chartables.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_compile.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_config.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_dfa_exec.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_exec.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_fullinfo.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_get.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_globals.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_maketables.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_newline.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_ord2utf8.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_refcount.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_study.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_tables.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_ucd.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_valid_utf8.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_version.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="pcre\pcre_xclass.c">
+      <Filter>pcre</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="pcre">
+      <UniqueIdentifier>{09b7ec7e-ba73-4272-8400-76e7293f0e99}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

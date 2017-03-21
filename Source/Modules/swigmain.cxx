@@ -26,34 +26,8 @@
    can be dynamically loaded in future versions. */
 
 extern "C" {
-  Language *swig_tcl(void);
   Language *swig_python(void);
-  Language *swig_perl5(void);
-  Language *swig_ruby(void);
-  Language *swig_guile(void);
-  Language *swig_modula3(void);
-  Language *swig_mzscheme(void);
-  Language *swig_java(void);
-  Language *swig_php(void);
-  Language *swig_php4(void);
-  Language *swig_php5(void);
-  Language *swig_ocaml(void);
-  Language *swig_octave(void);
-  Language *swig_pike(void);
-  Language *swig_sexp(void);
   Language *swig_xml(void);
-  Language *swig_chicken(void);
-  Language *swig_csharp(void);
-  Language *swig_allegrocl(void);
-  Language *swig_lua(void);
-  Language *swig_clisp(void);
-  Language *swig_cffi(void);
-  Language *swig_uffi(void);
-  Language *swig_r(void);
-  Language *swig_scilab(void);
-  Language *swig_go(void);
-  Language *swig_d(void);
-  Language *swig_javascript(void);
 }
 
 struct swig_module {
@@ -67,36 +41,7 @@ struct swig_module {
    list sorted alphabetically. */
 
 static swig_module modules[] = {
-  {"-allegrocl", swig_allegrocl, "ALLEGROCL"},
-  {"-chicken", swig_chicken, "CHICKEN"},
-  {"-clisp", swig_clisp, "CLISP"},
-  {"-cffi", swig_cffi, "CFFI"},
-  {"-csharp", swig_csharp, "C#"},
-  {"-d", swig_d, "D"},
-  {"-go", swig_go, "Go"},
-  {"-guile", swig_guile, "Guile"},
-  {"-java", swig_java, "Java"},
-  {"-javascript", swig_javascript, "Javascript"},
-  {"-lua", swig_lua, "Lua"},
-  {"-modula3", swig_modula3, "Modula 3"},
-  {"-mzscheme", swig_mzscheme, "Mzscheme"},
-  {"-ocaml", swig_ocaml, "Ocaml"},
-  {"-octave", swig_octave, "Octave"},
-  {"-perl", swig_perl5, "Perl"},
-  {"-perl5", swig_perl5, 0},
-  {"-php", swig_php5, 0},
-  {"-php4", swig_php4, 0},
-  {"-php5", swig_php5, "PHP5"},
-  {"-php7", swig_php, "PHP7"},
-  {"-pike", swig_pike, "Pike"},
   {"-python", swig_python, "Python"},
-  {"-r", swig_r, "R (aka GNU S)"},
-  {"-ruby", swig_ruby, "Ruby"},
-  {"-scilab", swig_scilab, "Scilab"},
-  {"-sexp", swig_sexp, "Lisp S-Expressions"},
-  {"-tcl", swig_tcl, "Tcl"},
-  {"-tcl8", swig_tcl, 0},
-  {"-uffi", swig_uffi, "Common Lisp / UFFI"},
   {"-xml", swig_xml, "XML"},
   {NULL, NULL, NULL}
 };
