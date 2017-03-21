@@ -103,6 +103,7 @@ static int strongenum = 0;
 
 /* flags for the make_autodoc function */
 enum autodoc_t {
+  AUTODOC_NONE,
   AUTODOC_CLASS,
   AUTODOC_CTOR,
   AUTODOC_DTOR,
@@ -3337,7 +3338,7 @@ public:
 	Setattr(builtin_getset, memname, h);
 	Delete(h);
       }
-      String *ds = cdocstring(n, AUTODOC_FUNC);
+      String *ds = cdocstring(n, AUTODOC_NONE);
       Setattr(h, "docstring", ds);
       Delete(ds);
     }
