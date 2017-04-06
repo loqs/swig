@@ -141,4 +141,7 @@
       <UniqueIdentifier>{09b7ec7e-ba73-4272-8400-76e7293f0e99}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Source\CParse\parser.y" />
+  </ItemGroup>
 </Project>

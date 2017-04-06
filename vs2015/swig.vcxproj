@@ -144,6 +144,9 @@
     <ClCompile Include="pcre\pcre_version.c" />
     <ClCompile Include="pcre\pcre_xclass.c" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Source\CParse\parser.y" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
