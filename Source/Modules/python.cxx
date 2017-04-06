@@ -1924,6 +1924,7 @@ public:
       bool showTypes = false;
       bool skipAuto = false;
       String *autodoc = Getattr(n, "feature:autodoc");
+      bool autodocret = Char(Getattr(n, "feature:autodoc:noret")) == NULL;
       autodoc_l dlevel = autodoc_level(autodoc);
       switch (dlevel) {
       case NO_AUTODOC:
@@ -2006,13 +2007,13 @@ public:
 
 	case AUTODOC_STATICFUNC:
 	  Printf(doc, "%s(%s)", symname, make_autodocParmList(n, showTypes));
-	  if (type_str)
+	  if (type_str && autodocret)
 	    Printf(doc, " -> %s", type_str);
 	  break;
 
 	case AUTODOC_FUNC:
 	  Printf(doc, "%s(%s)", symname, make_autodocParmList(n, showTypes));
-	  if (type_str)
+	  if (type_str && autodocret)
 	    Printf(doc, " -> %s", type_str);
 	  break;
 
@@ -2025,7 +2026,7 @@ public:
 	    Printf(doc, "self, %s)", paramList);
 	  else
 	    Printf(doc, "self)");
-	  if (type_str)
+	  if (type_str && autodocret)
 	    Printf(doc, " -> %s", type_str);
 	  break;
 	}
