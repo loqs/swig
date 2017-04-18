@@ -1195,6 +1195,82 @@ SwigType *SwigType_strip_qualifiers(const SwigType *t) {
 }
 
 /* -----------------------------------------------------------------------------
+ * SwigType_strip_enum_prefix()
+ * 
+ * Strip all 'enum' prefixes from a type, possibly inside template parameters,
+ * and return a new type.
+ * ----------------------------------------------------------------------------- */
+
+extern SwigType *SwigType_strip_enum_prefix(const SwigType *t)
+{
+  char *c = Char(t);
+
+  char *nextEnum = strstr(c, "enum");
+
+  /* if there's no enum string (inexact conservative check) return directly */
+  if(!nextEnum)
+    return Copy(t);
+
+  SwigType *r = NewStringEmpty();
+
+  char *end = c + Len(t);
+
+  /* 
+   * general algorithm is:
+   * 1. Search for the next instance of 'enum'
+   * 2. If there is no next instance, append the rest of the string and stop.
+   * 3. Otherwise, append everything up to that instance.
+   * 4. Check if the instance of 'enum' is an actual valid prefix:
+   *    - preceeded by a space or a non-identifier symbol (not any of a-z, A-Z, 0-9, or _)
+   *    - and followed by a space
+   * 5. If it's valid, skip it and the following space, then continue at 1.
+   * 6. If it's invalid, append it only and then continue at 1.
+   */
+
+  char *cur = c;
+
+  do {
+    /* nextEnum == cur if the type starts with 'enum', so nothing to append */
+    if(nextEnum > cur) {
+      String *substr = NewStringWithSize(cur, nextEnum - cur);
+      Append(r, substr);
+      Delete(substr);
+    }
+
+    cur = nextEnum;
+
+    /* is the preceeding character a space, or non-identifier */
+    if(cur == c || cur[-1] == ' ' || (!isalnum(cur[-1]) && cur[-1] != '_')) {
+
+      /* is the following character a space */
+      if(cur + 4 == end || cur[4] == ' ') {
+        /* skip the 'enum' and space, and continue */
+        cur += 5;
+        nextEnum = strstr(cur, "enum");
+        continue;
+      }
+    }
+
+    /* append the 'enum' and continue */
+    String *substr = NewStringWithSize(cur, 4);
+    Append(r, substr);
+    Delete(substr);
+
+    cur += 4;
+
+    nextEnum = strstr(cur, "enum");
+  } while(nextEnum);
+
+  if(cur != end) {
+    String *substr = NewStringWithSize(cur, end - cur);
+    Append(r, substr);
+    Delete(substr);
+  }
+
+  return r;
+}
+
+/* -----------------------------------------------------------------------------
  * SwigType_strip_single_qualifier()
  * 
  * If the type contains a qualifier, strip one qualifier and return a new type.

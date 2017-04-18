@@ -1423,6 +1423,9 @@ SwigType *SwigType_alttype(const SwigType *t, int local_tmap) {
       SwigType *ftd = SwigType_typedef_resolve_all(t);
       td = SwigType_strip_qualifiers(ftd);
       Delete(ftd);
+      ftd = td;
+      td = SwigType_strip_enum_prefix(ftd);
+      Delete(ftd);
       n = Swig_symbol_clookup(td, 0);
       if (n) {
 	if (GetFlag(n, "feature:valuewrapper")) {
@@ -1444,6 +1447,9 @@ SwigType *SwigType_alttype(const SwigType *t, int local_tmap) {
     /* safe use of SwigValueTypes, it can fail with some typemaps */
     SwigType *ftd = SwigType_typedef_resolve_all(t);
     td = SwigType_strip_qualifiers(ftd);
+    Delete(ftd);
+    ftd = td;
+    td = SwigType_strip_enum_prefix(ftd);
     Delete(ftd);
     if (SwigType_type(td) == T_USER) {
       use_wrapper = 1;

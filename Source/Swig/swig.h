@@ -167,6 +167,7 @@ extern "C" {
   extern int SwigType_isenum(const SwigType *t);
   extern int SwigType_check_decl(const SwigType *t, const_String_or_char_ptr decl);
   extern SwigType *SwigType_strip_qualifiers(const SwigType *t);
+  extern SwigType *SwigType_strip_enum_prefix(const SwigType *t);
   extern SwigType *SwigType_strip_single_qualifier(const SwigType *t);
   extern SwigType *SwigType_functionpointer_decompose(SwigType *t);
   extern String *SwigType_base(const SwigType *t);
