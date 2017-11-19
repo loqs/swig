@@ -3174,6 +3174,13 @@ public:
     } else {
       Swig_warning(WARN_TYPEMAP_OUT_UNDEF, input_file, line_number, "Unable to use return type %s in function %s.\n", SwigType_str(d, 0), name);
     }
+    if (builtin_getter && (shadow & PYSHADOW_MEMBER)) {
+      Append(f->code, "if (SwigPyObject_Check(resultobj)) {\n");
+      Append(f->code, "  SwigPyObject *sobj = (SwigPyObject *)resultobj;\n");
+      Append(f->code, "  sobj->parent = self;\n");
+      Append(f->code, "  Py_INCREF(self);\n");
+      Append(f->code, "}\n");
+    }
     emit_return_variable(n, d, f);
 
     /* Output argument output code */
