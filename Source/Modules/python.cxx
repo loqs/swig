@@ -4009,7 +4009,10 @@ public:
 	max_bases = base_count;
     }
     Printv(f_init, "  builtin_bases[builtin_base_count] = NULL;\n", NIL);
-    Printv(f_init, "  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);\n", NIL);
+    if (is_enum_class(n)) {
+      Printv(f_init, "if (Enum_class == NULL) ", NIL);
+    }
+    Printv(f_init, "SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);\n", NIL);
     builtin_bases_needed = 1;
 
     // Check for non-public destructor, in which case tp_dealloc will issue
@@ -4023,8 +4026,15 @@ public:
     Printf(getset_def, "SWIGINTERN PyGetSetDef %s[] = {\n", getset_name);
 
     // All objects have 'this' and 'thisown' attributes
+    // We skip this for enum classes as we won't create the type directly ourselves
+    if (is_enum_class(n)) {
+      Printv(f_init, "if (Enum_class == NULL) {\n", NIL);
+    }
     Printv(f_init, "PyDict_SetItemString(d, \"this\", this_descr);\n", NIL);
     Printv(f_init, "PyDict_SetItemString(d, \"thisown\", thisown_descr);\n", NIL);
+    if (is_enum_class(n)) {
+      Printv(f_init, "}\n", NIL);
+    }
 
     // Now, the rest of the attributes
     for (Iterator member_iter = First(builtin_getset); member_iter.item; member_iter = Next(member_iter)) {
@@ -4354,6 +4364,21 @@ public:
 
     Printf(f, "SWIGINTERN SwigPyClientData %s_clientdata = {%s, 0, 0, 0, 0, 0, (PyTypeObject *)&%s_type};\n\n", templ, clientdata_klass, templ);
 
+    // if strong PEP435 Enum constructor is available, use functional API to create type
+    // re-use the dict with constants already created for tp_dict.
+    if (is_enum_class(n)) {
+      Printv(f_init, "    if (Enum_class) {\n", NIL);
+      Printv(f_init, "      PyObject *constructor = Enum_class;\n", NIL);
+      if (Getattr(n, "feature:python:enum:flag")) {
+	Printv(f_init, "      if(Flag_class) constructor = Flag_class;\n", NIL);
+      }
+      Printf(f_init, "      builtin_pytype->tp_base = (PyTypeObject *)PyObject_CallFunction(constructor, \"sO\", \"%s\", d);\n", symname);
+      Printf(f_init, "      PyModule_AddObject(m, \"%s\", (PyObject *)builtin_pytype->tp_base);\n", symname);
+      Printv(f_init, "      Py_DECREF(d);\n", NIL);
+      Printv(f_init, "      builtin_pytype->tp_dict = NULL;\n", NIL);
+      Printv(f_init, "    } else {\n", NIL);
+    }
+
     Printv(f_init, "    if (PyType_Ready(builtin_pytype) < 0) {\n", NIL);
     Printf(f_init, "      PyErr_SetString(PyExc_TypeError, \"Could not create type '%s'.\");\n", symname);
     Printv(f_init, "#if PY_VERSION_HEX >= 0x03000000\n", NIL);
@@ -4364,6 +4389,11 @@ public:
     Printv(f_init, "    }\n", NIL);
     Printv(f_init, "    Py_INCREF(builtin_pytype);\n", NIL);
     Printf(f_init, "    PyModule_AddObject(m, \"%s\", (PyObject *)builtin_pytype);\n", symname);
+
+    if (is_enum_class(n)) {
+      Printv(f_init, "}\n", NIL);
+    }
+
     Printf(f_init, "    SwigPyBuiltin_AddPublicSymbol(public_interface, \"%s\");\n", symname);
     Printv(f_init, "    d = md;\n", NIL);
 
