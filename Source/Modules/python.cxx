@@ -4380,6 +4380,7 @@ public:
 	Printv(f_init, "      if(Flag_class) constructor = Flag_class;\n", NIL);
       }
       Printf(f_init, "      builtin_pytype->tp_base = (PyTypeObject *)PyObject_CallFunction(constructor, \"sO\", \"%s\", d);\n", symname);
+      Printf(f_init, "      PyObject_SetAttrString((PyObject *)builtin_pytype->tp_base, \"__doc__\", PyUnicode_FromString(builtin_pytype->tp_doc));\n");
       Printf(f_init, "      PyModule_AddObject(m, \"%s\", (PyObject *)builtin_pytype->tp_base);\n", symname);
       Printv(f_init, "      Py_DECREF(d);\n", NIL);
       Printv(f_init, "      builtin_pytype->tp_dict = NULL;\n", NIL);
