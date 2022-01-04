@@ -39,9 +39,10 @@ install:
 - ps: $env:VSCOMNTOOLS=(Get-Content ("env:VS" + "$env:VSVER" + "0COMNTOOLS"))
 - echo "Using Visual Studio %VSVER%.0 at %VSCOMNTOOLS%"
 - call "%VSCOMNTOOLS%\..\..\VC\vcvarsall.bat" %VCVARS_PLATFORM%
-- Tools\nuget-install.cmd pcre -Verbosity detailed -Version 8.33.0.1 -OutputDirectory C:\pcre
-- set PCRE_ROOT=C:/pcre/pcre.8.33.0.1/build/native
-- set PATH=C:\Python%VER%%LANG_PLATFORM%;%PATH%
+- appveyor-retry appveyor DownloadFile https://github.com/PhilipHazel/pcre2/archive/refs/tags/pcre2-10.39.zip
+- 7z x pcre2-10.39.zip
+- set PCRE_ROOT=C:/pcre
+- set PATH=C:\Python%VER%%LANG_PLATFORM%;%PATH%- set PATH=C:\Python%VER%%LANG_PLATFORM%;%PATH%
 - python -V
 - bash -c "which python"
 - bash -c "python -V"
