@@ -157,7 +157,7 @@ can be obtained by typing <tt>swig -help</tt> or <tt>swig
 -oh <em>headfile</em>          Set name of C++ output header file for directors to &lt;headfile&gt;
 -outcurrentdir        Set default output dir to current dir instead of input file's path
 -outdir <em>dir</em>           Set language specific files output directory
--pcreversion          Display PCRE version information
+-pcreversion          Display PCRE2 version information
 -swiglib              Report location of SWIG library and exit
 -version              Display SWIG version number
 
@@ -1901,8 +1901,8 @@ and a more descriptive one, but the two functions are otherwise equivalent:
     <td>String after (Perl-like) regex substitution operation. This function
     allows to apply arbitrary regular expressions to the identifier names. The
     <i>pattern</i> part is a regular expression in Perl syntax (as supported
-    by the <a href="http://www.pcre.org/">Perl Compatible Regular Expressions (PCRE)</a>)
-    library and the <i>subst</i> string
+    by the <a href="http://www.pcre.org/">Perl Compatible Regular Expressions</a>)
+    (PCRE2 library) and the <i>subst</i> string
     can contain back-references of the form <tt>\N</tt> where <tt>N</tt> is a digit
     from 0 to 9, or one of the following escape sequences: <tt>\l</tt>, <tt>\L</tt>,
     <tt>\u</tt>, <tt>\U</tt> or <tt>\E</tt>. The back-references are replaced with the
